@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_f98550736b724374ab31c1b3ae39415e }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_2f99cda8c1204ff88c8a4faa8c0bfbc6 }}
+        registry: https://github.com/olegtopolsky/group10/
+        username: ${{ secrets.AzureAppService_ContainerUsername_51faf2f8e882480b812656481dbd6b1d }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_ff3daa58cf214191b19914914189eae0 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_f98550736b724374ab31c1b3ae39415e }}/appsvc/staticsite:${{ github.sha }}
+        tags: github.com/olegtopolsky/group10/${{ secrets.AzureAppService_ContainerUsername_51faf2f8e882480b812656481dbd6b1d }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'group10bestteam'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1ceb1bec81d94cbcac204941bda3facc }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_f98550736b724374ab31c1b3ae39415e }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_2ce9e04bb6d44d01aa42f28e55817846 }}
+        images: 'github.com/olegtopolsky/group10/${{ secrets.AzureAppService_ContainerUsername_51faf2f8e882480b812656481dbd6b1d }}/appsvc/staticsite:${{ github.sha }}'
